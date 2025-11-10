@@ -1,0 +1,177 @@
+{% extends 'horoscope/base.html' %}
+
+{% block title %}Passo 3: Criar Sua Conta - AstroLife{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-12 max-w-2xl">
+    <!-- Progress Bar -->
+    <div class="mb-8">
+        <div class="flex justify-between text-sm mb-2">
+            <span>Passo 3 de 4</span>
+            <span>75%</span>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-2">
+            <div class="progress-bar rounded-full" style="width: 75%;"></div>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <div class="cosmic-card rounded-3xl p-8 md:p-12">
+        <div class="text-center mb-8">
+            <div class="text-6xl mb-4">🌙</div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 glow-text">
+                Quase lá! Crie sua conta
+            </h1>
+            <p class="text-purple-200">
+                Precisamos de alguns dados para você acessar seu mapa astral personalizado
+            </p>
+        </div>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div>
+                <label for="username" class="block text-sm font-medium mb-2">
+                    Nome de Usuário <span class="text-red-400">*</span>
+                </label>
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    required
+                    minlength="3"
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none transition"
+                    placeholder="Escolha um nome de usuário"
+                >
+                <p class="text-xs text-purple-300 mt-1">
+                    Mínimo 3 caracteres
+                </p>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium mb-2">
+                    Email <span class="text-red-400">*</span>
+                </label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none transition"
+                    placeholder="seu@email.com"
+                >
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label for="password" class="block text-sm font-medium mb-2">
+                    Senha <span class="text-red-400">*</span>
+                </label>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    required
+                    minlength="6"
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none transition"
+                    placeholder="Mínimo 6 caracteres"
+                >
+            </div>
+
+            <!-- Password Confirm -->
+            <div>
+                <label for="password_confirm" class="block text-sm font-medium mb-2">
+                    Confirmar Senha <span class="text-red-400">*</span>
+                </label>
+                <input
+                    type="password"
+                    name="password_confirm"
+                    id="password_confirm"
+                    required
+                    minlength="6"
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none transition"
+                    placeholder="Digite a senha novamente"
+                >
+            </div>
+
+            <!-- Password match indicator -->
+            <div id="password-match" class="hidden glass-effect rounded-xl p-3 text-sm"></div>
+
+            <!-- Info Box -->
+            <div class="glass-effect rounded-xl p-4 border-purple-400">
+                <p class="text-sm text-purple-200">
+                    🔒 Seus dados estão protegidos e seguros. Nunca compartilharemos suas informações.
+                </p>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex gap-4">
+                <a
+                    href="{% url 'quiz_step2' %}"
+                    class="flex-1 glass-effect py-4 rounded-xl font-semibold text-center hover:border-purple-400 transition"
+                >
+                    ← Voltar
+                </a>
+                <button
+                    type="submit"
+                    id="submit-btn"
+                    class="flex-1 cosmic-button py-4 rounded-xl font-semibold"
+                >
+                    Criar Conta →
+                </button>
+            </div>
+        </form>
+
+        <!-- Login Link -->
+        <div class="text-center mt-6">
+            <p class="text-purple-300">
+                Já tem uma conta?
+                <a href="{% url 'login' %}" class="text-purple-400 hover:text-purple-300 font-semibold">
+                    Entrar
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Suspense Text -->
+    <div class="text-center mt-8">
+        <p class="text-purple-300 text-lg">
+            ✨ Seu mapa astral exclusivo está quase pronto...
+        </p>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    const password = document.getElementById('password');
+    const passwordConfirm = document.getElementById('password_confirm');
+    const passwordMatch = document.getElementById('password-match');
+    const submitBtn = document.getElementById('submit-btn');
+
+    function checkPasswordMatch() {
+        if (passwordConfirm.value.length > 0) {
+            passwordMatch.classList.remove('hidden');
+            if (password.value === passwordConfirm.value) {
+                passwordMatch.textContent = '✓ As senhas coincidem';
+                passwordMatch.classList.remove('border-red-500');
+                passwordMatch.classList.add('border-green-500');
+                submitBtn.disabled = false;
+            } else {
+                passwordMatch.textContent = '✗ As senhas não coincidem';
+                passwordMatch.classList.remove('border-green-500');
+                passwordMatch.classList.add('border-red-500');
+                submitBtn.disabled = true;
+            }
+        } else {
+            passwordMatch.classList.add('hidden');
+            submitBtn.disabled = false;
+        }
+    }
+
+    password.addEventListener('input', checkPasswordMatch);
+    passwordConfirm.addEventListener('input', checkPasswordMatch);
+</script>
+{% endblock %}
+{% endblock %}

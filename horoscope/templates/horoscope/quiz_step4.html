@@ -1,0 +1,177 @@
+{% extends 'horoscope/base.html' %}
+
+{% block title %}Passo 4: Escolha Seu Plano - AstroLife{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-12 max-w-5xl">
+    <!-- Progress Bar -->
+    <div class="mb-8 max-w-2xl mx-auto">
+        <div class="flex justify-between text-sm mb-2">
+            <span>Passo 4 de 4</span>
+            <span>100%</span>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-2">
+            <div class="progress-bar rounded-full" style="width: 100%;"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+        <div class="text-6xl mb-4">✨</div>
+        <h1 class="text-3xl md:text-5xl font-bold mb-4 glow-text">
+            Liberar Meu Mapa Astral Completo
+        </h1>
+        <p class="text-xl text-purple-200">
+            Escolha o plano que melhor se encaixa na sua jornada espiritual
+        </p>
+    </div>
+
+    <!-- Plans -->
+    <form method="post" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {% csrf_token %}
+
+        {% for plan in plans %}
+        <label class="cosmic-card rounded-2xl p-6 cursor-pointer hover:scale-105 transition relative {% if plan.badge %}border-2 border-yellow-400{% endif %}">
+            {% if plan.badge %}
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-purple-900 px-4 py-1 rounded-full text-xs font-bold">
+                {{ plan.badge }}
+            </div>
+            {% endif %}
+
+            <input type="radio" name="plan" value="{{ plan.value }}" required class="mb-4" {% if plan.value == 'annual' %}checked{% endif %}>
+
+            <h3 class="text-2xl font-bold mb-2">{{ plan.name }}</h3>
+
+            <div class="text-3xl font-bold mb-2 cosmic-gradient bg-clip-text text-transparent">
+                {{ plan.price }}
+            </div>
+
+            <p class="text-purple-300 text-sm mb-4">
+                {{ plan.total }}
+            </p>
+
+            <div class="space-y-2 text-sm">
+                {% if plan.value == 'free' %}
+                <div class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Mapa astral básico</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Sol, Lua e Ascendente</span>
+                </div>
+                <div class="flex items-start opacity-50">
+                    <span class="mr-2">✗</span>
+                    <span>Previsões diárias</span>
+                </div>
+                <div class="flex items-start opacity-50">
+                    <span class="mr-2">✗</span>
+                    <span>Leituras completas</span>
+                </div>
+                {% else %}
+                <div class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Mapa astral completo</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Previsões diárias</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Leituras de amor</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Carreira e finanças</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Tarot e numerologia</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Compatibilidade</span>
+                </div>
+                {% endif %}
+            </div>
+        </label>
+        {% endfor %}
+
+        <!-- Submit Button -->
+        <div class="lg:col-span-4">
+            <button
+                type="submit"
+                class="w-full cosmic-button py-5 rounded-xl font-bold text-xl"
+            >
+                🌟 Revelar Meu Mapa Astral Agora
+            </button>
+        </div>
+    </form>
+
+    <!-- Benefits Section -->
+    <div class="cosmic-card rounded-2xl p-8 mb-8">
+        <h2 class="text-2xl font-bold text-center mb-8 glow-text">
+            Por que escolher o plano premium?
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+                <div class="text-4xl mb-3">🔮</div>
+                <h3 class="font-semibold mb-2">Leituras Profundas</h3>
+                <p class="text-sm text-purple-300">
+                    Interpretações completas e poéticas sobre todos os aspectos da sua vida
+                </p>
+            </div>
+
+            <div class="text-center">
+                <div class="text-4xl mb-3">📅</div>
+                <h3 class="font-semibold mb-2">Previsões Diárias</h3>
+                <p class="text-sm text-purple-300">
+                    Orientações personalizadas todos os dias baseadas no seu mapa natal
+                </p>
+            </div>
+
+            <div class="text-center">
+                <div class="text-4xl mb-3">💝</div>
+                <h3 class="font-semibold mb-2">Compatibilidade</h3>
+                <p class="text-sm text-purple-300">
+                    Descubra sua compatibilidade amorosa e como atrair relacionamentos saudáveis
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Note -->
+    <div class="text-center">
+        <p class="text-purple-300 text-sm">
+            🔒 Pagamento 100% seguro. Cancele quando quiser, sem compromisso.
+        </p>
+        <p class="text-purple-400 text-xs mt-2">
+            * Para fins de demonstração, todos os planos darão acesso completo
+        </p>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    // Add visual feedback when plan is selected
+    const radioInputs = document.querySelectorAll('input[type="radio"]');
+    radioInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            // Remove border from all labels
+            const labels = document.querySelectorAll('label.cosmic-card');
+            labels.forEach(label => {
+                if (!label.querySelector('.absolute')) { // Don't remove "Melhor Oferta" border
+                    label.classList.remove('border-2', 'border-purple-400');
+                }
+            });
+            // Add border to selected label
+            if (!this.closest('label').querySelector('.absolute')) {
+                this.closest('label').classList.add('border-2', 'border-purple-400');
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,159 @@
+{% extends 'horoscope/base.html' %}
+
+{% block title %}Passo 2: Seu Perfil Emocional - AstroLife{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-12 max-w-2xl">
+    <!-- Progress Bar -->
+    <div class="mb-8">
+        <div class="flex justify-between text-sm mb-2">
+            <span>Passo 2 de 4</span>
+            <span>50%</span>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-2">
+            <div class="progress-bar rounded-full" style="width: 50%;"></div>
+        </div>
+    </div>
+
+    <!-- Feedback personalizado -->
+    {% if feedback %}
+    <div class="cosmic-card rounded-2xl p-6 mb-8 border-2 border-purple-400 animate-pulse">
+        <p class="text-center text-lg">
+            ✨ {{ feedback }}
+        </p>
+    </div>
+    {% endif %}
+
+    <!-- Form -->
+    <div class="cosmic-card rounded-3xl p-8 md:p-12">
+        <div class="text-center mb-8">
+            <div class="text-6xl mb-4">💫</div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 glow-text">
+                Conte-nos mais sobre você
+            </h1>
+            <p class="text-purple-200">
+                Suas respostas nos ajudarão a personalizar ainda mais suas leituras astrológicas
+            </p>
+        </div>
+
+        <form method="post" class="space-y-8">
+            {% csrf_token %}
+
+            <!-- Feeling -->
+            <div>
+                <label class="block text-lg font-medium mb-4 text-center">
+                    Como você anda se sentindo ultimamente?
+                </label>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="feeling" value="feliz" required class="mb-2">
+                        <div class="text-3xl mb-2">😊</div>
+                        <span>Feliz</span>
+                    </label>
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="feeling" value="ansioso" required class="mb-2">
+                        <div class="text-3xl mb-2">😰</div>
+                        <span>Ansioso</span>
+                    </label>
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="feeling" value="estressado" required class="mb-2">
+                        <div class="text-3xl mb-2">😓</div>
+                        <span>Estressado</span>
+                    </label>
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="feeling" value="motivado" required class="mb-2">
+                        <div class="text-3xl mb-2">💪</div>
+                        <span>Motivado</span>
+                    </label>
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="feeling" value="outro" required class="mb-2">
+                        <div class="text-3xl mb-2">🤔</div>
+                        <span>Outro</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Objective -->
+            <div>
+                <label class="block text-lg font-medium mb-4 text-center">
+                    O que você mais deseja alcançar agora?
+                </label>
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="objective" value="paixao" required class="mb-2">
+                        <div class="text-4xl mb-3">❤️</div>
+                        <div class="font-semibold mb-1">Paixão</div>
+                        <div class="text-sm text-purple-300">Encontrar ou fortalecer o amor</div>
+                    </label>
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="objective" value="dinheiro" required class="mb-2">
+                        <div class="text-4xl mb-3">💰</div>
+                        <div class="font-semibold mb-1">Dinheiro</div>
+                        <div class="text-sm text-purple-300">Prosperidade financeira</div>
+                    </label>
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="objective" value="saude" required class="mb-2">
+                        <div class="text-4xl mb-3">🩺</div>
+                        <div class="font-semibold mb-1">Saúde</div>
+                        <div class="text-sm text-purple-300">Bem-estar físico e mental</div>
+                    </label>
+                    <label class="glass-effect rounded-xl p-6 cursor-pointer hover:border-purple-400 transition text-center">
+                        <input type="radio" name="objective" value="autoconhecimento" required class="mb-2">
+                        <div class="text-4xl mb-3">🔮</div>
+                        <div class="font-semibold mb-1">Autoconhecimento</div>
+                        <div class="text-sm text-purple-300">Descobrir quem eu sou</div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div class="glass-effect rounded-xl p-4 border-purple-400">
+                <p class="text-sm text-purple-200 text-center">
+                    ✨ Suas respostas nos ajudam a criar previsões mais relevantes para sua vida
+                </p>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex gap-4">
+                <a
+                    href="{% url 'quiz_step1' %}"
+                    class="flex-1 glass-effect py-4 rounded-xl font-semibold text-center hover:border-purple-400 transition"
+                >
+                    ← Voltar
+                </a>
+                <button
+                    type="submit"
+                    class="flex-1 cosmic-button py-4 rounded-xl font-semibold"
+                >
+                    Continuar →
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Motivational Text -->
+    <div class="text-center mt-8">
+        <p class="text-purple-300 italic">
+            "O universo está conspirando a seu favor. Continue..."
+        </p>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    // Add visual feedback when options are selected
+    const radioInputs = document.querySelectorAll('input[type="radio"]');
+    radioInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            // Remove border from all labels in the same group
+            const labels = this.closest('div').parentElement.querySelectorAll('label');
+            labels.forEach(label => {
+                label.classList.remove('border-2', 'border-purple-400');
+            });
+            // Add border to selected label
+            this.closest('label').classList.add('border-2', 'border-purple-400');
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}
