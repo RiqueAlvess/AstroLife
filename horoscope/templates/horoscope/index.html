@@ -2,69 +2,69 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="container mx-auto px-4 py-20 text-center">
+<section class="container mx-auto px-4 py-12 md:py-20 text-center">
     <div class="max-w-4xl mx-auto">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 glow-text">
+        <h1 class="text-4xl md:text-7xl font-bold mb-4 md:mb-6 glow-text leading-tight">
             Descubra os Segredos do <span class="cosmic-gradient bg-clip-text text-transparent">Cosmos</span>
         </h1>
-        <p class="text-xl md:text-2xl text-purple-200 mb-8">
+        <p class="text-lg md:text-2xl text-purple-200 mb-6 md:mb-8">
             Desvende seu mapa astral completo e entenda quem você realmente é através das estrelas
         </p>
-        <a href="{% url 'quiz_step1' %}" class="cosmic-button inline-block px-10 py-4 rounded-full text-lg font-semibold">
+        <a href="{% url 'quiz_step1' %}" class="cosmic-button inline-block px-8 md:px-10 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold">
             ✨ Começar Minha Jornada
         </a>
     </div>
 </section>
 
 <!-- Features Section -->
-<section class="container mx-auto px-4 py-20">
-    <h2 class="text-4xl font-bold text-center mb-16 glow-text">O que você vai descobrir</h2>
+<section class="container mx-auto px-4 py-12 md:py-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 md:mb-16 glow-text">O que você vai descobrir</h2>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="cosmic-card rounded-2xl p-8 text-center hover:scale-105 transition">
-            <div class="text-5xl mb-4">🌞</div>
-            <h3 class="text-2xl font-semibold mb-4">Mapa Astral Completo</h3>
-            <p class="text-purple-200">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center hover:scale-105 transition">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">🌞</div>
+            <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Mapa Astral Completo</h3>
+            <p class="text-sm md:text-base text-purple-200">
                 Descubra seu Sol, Lua e Ascendente, e entenda como eles influenciam sua personalidade
             </p>
         </div>
 
-        <div class="cosmic-card rounded-2xl p-8 text-center hover:scale-105 transition">
-            <div class="text-5xl mb-4">❤️</div>
-            <h3 class="text-2xl font-semibold mb-4">Amor & Relacionamentos</h3>
-            <p class="text-purple-200">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center hover:scale-105 transition">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">❤️</div>
+            <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Amor & Relacionamentos</h3>
+            <p class="text-sm md:text-base text-purple-200">
                 Entenda sua compatibilidade e como atrair o amor verdadeiro para sua vida
             </p>
         </div>
 
-        <div class="cosmic-card rounded-2xl p-8 text-center hover:scale-105 transition">
-            <div class="text-5xl mb-4">💼</div>
-            <h3 class="text-2xl font-semibold mb-4">Carreira & Propósito</h3>
-            <p class="text-purple-200">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center hover:scale-105 transition">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">💼</div>
+            <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Carreira & Propósito</h3>
+            <p class="text-sm md:text-base text-purple-200">
                 Descubra seu verdadeiro propósito e as melhores oportunidades profissionais
             </p>
         </div>
 
-        <div class="cosmic-card rounded-2xl p-8 text-center hover:scale-105 transition">
-            <div class="text-5xl mb-4">💰</div>
-            <h3 class="text-2xl font-semibold mb-4">Finanças & Abundância</h3>
-            <p class="text-purple-200">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center hover:scale-105 transition">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">💰</div>
+            <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Finanças & Abundância</h3>
+            <p class="text-sm md:text-base text-purple-200">
                 Aprenda a atrair prosperidade e gerenciar seu dinheiro de acordo com seu mapa
             </p>
         </div>
 
-        <div class="cosmic-card rounded-2xl p-8 text-center hover:scale-105 transition">
-            <div class="text-5xl mb-4">🔮</div>
-            <h3 class="text-2xl font-semibold mb-4">Previsões Diárias</h3>
-            <p class="text-purple-200">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center hover:scale-105 transition">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">🔮</div>
+            <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Previsões Diárias</h3>
+            <p class="text-sm md:text-base text-purple-200">
                 Receba orientações personalizadas todos os dias baseadas em seu mapa natal
             </p>
         </div>
 
-        <div class="cosmic-card rounded-2xl p-8 text-center hover:scale-105 transition">
-            <div class="text-5xl mb-4">✨</div>
-            <h3 class="text-2xl font-semibold mb-4">Autoconhecimento</h3>
-            <p class="text-purple-200">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center hover:scale-105 transition">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">✨</div>
+            <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Autoconhecimento</h3>
+            <p class="text-sm md:text-base text-purple-200">
                 Mergulhe profundamente em quem você é e libere todo seu potencial
             </p>
         </div>
@@ -72,95 +72,95 @@
 </section>
 
 <!-- How It Works Section -->
-<section class="container mx-auto px-4 py-20">
-    <h2 class="text-4xl font-bold text-center mb-16 glow-text">Como funciona</h2>
+<section class="container mx-auto px-4 py-12 md:py-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 md:mb-16 glow-text">Como funciona</h2>
 
-    <div class="max-w-4xl mx-auto space-y-8">
-        <div class="flex items-start space-x-6">
-            <div class="cosmic-button w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+    <div class="max-w-4xl mx-auto space-y-6 md:space-y-8">
+        <div class="flex items-start gap-4 md:gap-6">
+            <div class="cosmic-button w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl font-bold flex-shrink-0">
                 1
             </div>
             <div>
-                <h3 class="text-2xl font-semibold mb-2">Responda perguntas sobre você</h3>
-                <p class="text-purple-200">
+                <h3 class="text-xl md:text-2xl font-semibold mb-2">Responda perguntas sobre você</h3>
+                <p class="text-sm md:text-base text-purple-200">
                     Conte-nos sobre sua data, hora e local de nascimento, além do que você busca agora
                 </p>
             </div>
         </div>
 
-        <div class="flex items-start space-x-6">
-            <div class="cosmic-button w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+        <div class="flex items-start gap-4 md:gap-6">
+            <div class="cosmic-button w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl font-bold flex-shrink-0">
                 2
             </div>
             <div>
-                <h3 class="text-2xl font-semibold mb-2">Calculamos seu mapa astral</h3>
-                <p class="text-purple-200">
+                <h3 class="text-xl md:text-2xl font-semibold mb-2">Calculamos seu mapa astral</h3>
+                <p class="text-sm md:text-base text-purple-200">
                     Nosso algoritmo analisa as posições planetárias no momento exato do seu nascimento
                 </p>
             </div>
         </div>
 
-        <div class="flex items-start space-x-6">
-            <div class="cosmic-button w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+        <div class="flex items-start gap-4 md:gap-6">
+            <div class="cosmic-button w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg md:text-xl font-bold flex-shrink-0">
                 3
             </div>
             <div>
-                <h3 class="text-2xl font-semibold mb-2">Receba insights personalizados</h3>
-                <p class="text-purple-200">
+                <h3 class="text-xl md:text-2xl font-semibold mb-2">Receba insights personalizados</h3>
+                <p class="text-sm md:text-base text-purple-200">
                     Acesse seu dashboard com leituras completas sobre amor, carreira, saúde e muito mais
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="text-center mt-16">
-        <a href="{% url 'quiz_step1' %}" class="cosmic-button inline-block px-10 py-4 rounded-full text-lg font-semibold">
+    <div class="text-center mt-10 md:mt-16">
+        <a href="{% url 'quiz_step1' %}" class="cosmic-button inline-block px-8 md:px-10 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold">
             Começar Agora - É Grátis
         </a>
     </div>
 </section>
 
 <!-- Testimonials Section -->
-<section class="container mx-auto px-4 py-20">
-    <h2 class="text-4xl font-bold text-center mb-16 glow-text">O que dizem sobre nós</h2>
+<section class="container mx-auto px-4 py-12 md:py-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 md:mb-16 glow-text">O que dizem sobre nós</h2>
 
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="cosmic-card rounded-2xl p-8">
-            <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
-            <p class="text-purple-200 mb-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8">
+            <div class="text-3xl md:text-4xl mb-3 md:mb-4">⭐⭐⭐⭐⭐</div>
+            <p class="text-sm md:text-base text-purple-200 mb-3 md:mb-4">
                 "Incrível! Nunca imaginei que meu mapa astral pudesse revelar tanto sobre mim. As previsões são muito precisas!"
             </p>
-            <p class="font-semibold">- Ana Paula, São Paulo</p>
+            <p class="text-sm md:text-base font-semibold">- Ana Paula, São Paulo</p>
         </div>
 
-        <div class="cosmic-card rounded-2xl p-8">
-            <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
-            <p class="text-purple-200 mb-4">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8">
+            <div class="text-3xl md:text-4xl mb-3 md:mb-4">⭐⭐⭐⭐⭐</div>
+            <p class="text-sm md:text-base text-purple-200 mb-3 md:mb-4">
                 "O mapa astral me ajudou a entender melhor meus relacionamentos e tomar decisões mais conscientes na minha carreira."
             </p>
-            <p class="font-semibold">- Carlos Eduardo, Rio de Janeiro</p>
+            <p class="text-sm md:text-base font-semibold">- Carlos Eduardo, Rio de Janeiro</p>
         </div>
 
-        <div class="cosmic-card rounded-2xl p-8">
-            <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
-            <p class="text-purple-200 mb-4">
+        <div class="cosmic-card rounded-xl md:rounded-2xl p-6 md:p-8">
+            <div class="text-3xl md:text-4xl mb-3 md:mb-4">⭐⭐⭐⭐⭐</div>
+            <p class="text-sm md:text-base text-purple-200 mb-3 md:mb-4">
                 "Simplesmente maravilhoso! As leituras são poéticas e profundas. Me sinto mais conectada comigo mesma."
             </p>
-            <p class="font-semibold">- Juliana Silva, Belo Horizonte</p>
+            <p class="text-sm md:text-base font-semibold">- Juliana Silva, Belo Horizonte</p>
         </div>
     </div>
 </section>
 
 <!-- CTA Final -->
-<section class="container mx-auto px-4 py-20 text-center">
-    <div class="cosmic-card rounded-3xl p-12 max-w-4xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 glow-text">
+<section class="container mx-auto px-4 py-12 md:py-20 text-center">
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4 md:mb-6 glow-text">
             Pronto para descobrir seu destino?
         </h2>
-        <p class="text-xl text-purple-200 mb-8">
+        <p class="text-base md:text-xl text-purple-200 mb-6 md:mb-8">
             Junte-se a milhares de pessoas que já transformaram suas vidas através da astrologia
         </p>
-        <a href="{% url 'quiz_step1' %}" class="cosmic-button inline-block px-12 py-5 rounded-full text-xl font-semibold">
+        <a href="{% url 'quiz_step1' %}" class="cosmic-button inline-block px-8 md:px-12 py-3 md:py-5 rounded-full text-base md:text-xl font-semibold">
             🌟 Criar Meu Mapa Astral Grátis
         </a>
     </div>

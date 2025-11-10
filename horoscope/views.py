@@ -191,7 +191,7 @@ def quiz_step4(request):
 
 @login_required
 def dashboard(request):
-    """Dashboard principal com mapa natal completo"""
+    """Dashboard principal - página inicial"""
     try:
         birth_chart = request.user.birth_chart
     except BirthChart.DoesNotExist:
@@ -209,6 +209,68 @@ def dashboard(request):
     }
 
     return render(request, 'horoscope/dashboard.html', context)
+
+
+@login_required
+def natal_chart(request):
+    """Página do Mapa Astral e Personalidade"""
+    try:
+        birth_chart = request.user.birth_chart
+    except BirthChart.DoesNotExist:
+        calculate_user_birth_chart(request.user)
+        birth_chart = request.user.birth_chart
+
+    context = {
+        'birth_chart': birth_chart,
+    }
+
+    return render(request, 'horoscope/natal_chart.html', context)
+
+
+@login_required
+def predictions(request):
+    """Página de Previsões Astrológicas"""
+    try:
+        birth_chart = request.user.birth_chart
+    except BirthChart.DoesNotExist:
+        calculate_user_birth_chart(request.user)
+        birth_chart = request.user.birth_chart
+
+    context = {
+        'birth_chart': birth_chart,
+    }
+
+    return render(request, 'horoscope/predictions.html', context)
+
+
+@login_required
+def readings(request):
+    """Página de Leituras Completas"""
+    try:
+        birth_chart = request.user.birth_chart
+    except BirthChart.DoesNotExist:
+        calculate_user_birth_chart(request.user)
+        birth_chart = request.user.birth_chart
+
+    context = {
+        'birth_chart': birth_chart,
+    }
+
+    return render(request, 'horoscope/readings.html', context)
+
+
+@login_required
+def settings(request):
+    """Página de Configurações e Billing"""
+    profile = request.user.profile
+    subscription = request.user.subscription
+
+    context = {
+        'profile': profile,
+        'subscription': subscription,
+    }
+
+    return render(request, 'horoscope/settings.html', context)
 
 
 def calculate_user_birth_chart(user):

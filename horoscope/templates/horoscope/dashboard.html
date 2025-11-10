@@ -1,247 +1,116 @@
 {% extends 'horoscope/base.html' %}
 
-{% block title %}Meu Mapa Astral - AstroLife{% endblock %}
+{% block title %}Dashboard - AstroLife{% endblock %}
 
 {% block content %}
-<section class="container mx-auto px-4 py-8">
+<section class="container mx-auto px-4 py-6 md:py-8">
     <!-- Welcome Header -->
-    <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 glow-text">
+    <div class="text-center mb-8 md:mb-12">
+        <h1 class="text-3xl md:text-5xl font-bold mb-3 md:mb-4 glow-text">
             Olá, {{ user.username }}! 🌟
         </h1>
-        <p class="text-xl text-purple-200">
+        <p class="text-base md:text-xl text-purple-200">
             Bem-vindo ao seu universo pessoal
         </p>
     </div>
 
-    <!-- Main Signs Card -->
-    <div class="cosmic-card rounded-3xl p-8 md:p-12 mb-8">
-        <h2 class="text-3xl font-bold text-center mb-8 glow-text">
-            Seu Mapa Astral
-        </h2>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-8">
-            <!-- Sun Sign -->
+    <!-- Quick Info Card -->
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8 mb-6 md:mb-8">
+        <div class="grid grid-cols-3 gap-4 md:gap-6">
             <div class="text-center">
-                <div class="text-6xl mb-4">☀️</div>
-                <h3 class="text-2xl font-bold mb-2">Sol</h3>
-                <p class="text-3xl font-bold cosmic-gradient bg-clip-text text-transparent mb-2">
-                    {{ birth_chart.sun_sign }}
-                </p>
-                <p class="text-sm text-purple-300">{{ birth_chart.sun_position|floatformat:2 }}°</p>
+                <div class="text-3xl md:text-4xl mb-2">☀️</div>
+                <p class="text-xs md:text-sm text-purple-300 mb-1">Sol</p>
+                <p class="text-sm md:text-lg font-bold">{{ birth_chart.sun_sign }}</p>
             </div>
-
-            <!-- Moon Sign -->
             <div class="text-center">
-                <div class="text-6xl mb-4">🌙</div>
-                <h3 class="text-2xl font-bold mb-2">Lua</h3>
-                <p class="text-3xl font-bold cosmic-gradient bg-clip-text text-transparent mb-2">
-                    {{ birth_chart.moon_sign }}
-                </p>
-                <p class="text-sm text-purple-300">{{ birth_chart.moon_position|floatformat:2 }}°</p>
+                <div class="text-3xl md:text-4xl mb-2">🌙</div>
+                <p class="text-xs md:text-sm text-purple-300 mb-1">Lua</p>
+                <p class="text-sm md:text-lg font-bold">{{ birth_chart.moon_sign }}</p>
             </div>
-
-            <!-- Ascendant -->
             <div class="text-center">
-                <div class="text-6xl mb-4">🌅</div>
-                <h3 class="text-2xl font-bold mb-2">Ascendente</h3>
-                <p class="text-3xl font-bold cosmic-gradient bg-clip-text text-transparent mb-2">
-                    {{ birth_chart.ascendant_sign }}
-                </p>
-                <p class="text-sm text-purple-300">{{ birth_chart.ascendant_position|floatformat:2 }}°</p>
-            </div>
-        </div>
-
-        <!-- Descriptions -->
-        <div class="space-y-6">
-            <div class="glass-effect rounded-xl p-6">
-                <h4 class="font-bold text-lg mb-2">☀️ Sol em {{ birth_chart.sun_sign }}</h4>
-                <p class="text-purple-200">{{ birth_chart.sun_description }}</p>
-            </div>
-
-            <div class="glass-effect rounded-xl p-6">
-                <h4 class="font-bold text-lg mb-2">🌙 Lua em {{ birth_chart.moon_sign }}</h4>
-                <p class="text-purple-200">{{ birth_chart.moon_description }}</p>
-            </div>
-
-            <div class="glass-effect rounded-xl p-6">
-                <h4 class="font-bold text-lg mb-2">🌅 Ascendente em {{ birth_chart.ascendant_sign }}</h4>
-                <p class="text-purple-200">{{ birth_chart.ascendant_description }}</p>
+                <div class="text-3xl md:text-4xl mb-2">🌅</div>
+                <p class="text-xs md:text-sm text-purple-300 mb-1">Ascendente</p>
+                <p class="text-sm md:text-lg font-bold">{{ birth_chart.ascendant_sign }}</p>
             </div>
         </div>
     </div>
 
-    <!-- Personality Traits -->
-    <div class="cosmic-card rounded-3xl p-8 md:p-12 mb-8">
-        <h2 class="text-3xl font-bold text-center mb-8 glow-text">
-            🧠 Perfil de Personalidade
-        </h2>
-
-        <div class="space-y-4 max-w-3xl mx-auto">
-            <!-- Leadership -->
-            <div>
-                <div class="flex justify-between mb-2">
-                    <span class="font-semibold">Liderança</span>
-                    <span>{{ birth_chart.leadership|floatformat:1 }}%</span>
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-3">
-                    <div class="cosmic-gradient rounded-full h-3 transition-all duration-1000" style="width: {{ birth_chart.leadership }}%;"></div>
-                </div>
-            </div>
-
-            <!-- Courage -->
-            <div>
-                <div class="flex justify-between mb-2">
-                    <span class="font-semibold">Coragem</span>
-                    <span>{{ birth_chart.courage|floatformat:1 }}%</span>
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-3">
-                    <div class="cosmic-gradient rounded-full h-3 transition-all duration-1000" style="width: {{ birth_chart.courage }}%;"></div>
-                </div>
-            </div>
-
-            <!-- Charisma -->
-            <div>
-                <div class="flex justify-between mb-2">
-                    <span class="font-semibold">Carisma</span>
-                    <span>{{ birth_chart.charisma|floatformat:1 }}%</span>
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-3">
-                    <div class="cosmic-gradient rounded-full h-3 transition-all duration-1000" style="width: {{ birth_chart.charisma }}%;"></div>
-                </div>
-            </div>
-
-            <!-- Sensitivity -->
-            <div>
-                <div class="flex justify-between mb-2">
-                    <span class="font-semibold">Sensibilidade</span>
-                    <span>{{ birth_chart.sensitivity|floatformat:1 }}%</span>
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-3">
-                    <div class="cosmic-gradient rounded-full h-3 transition-all duration-1000" style="width: {{ birth_chart.sensitivity }}%;"></div>
-                </div>
-            </div>
-
-            <!-- Intelligence -->
-            <div>
-                <div class="flex justify-between mb-2">
-                    <span class="font-semibold">Inteligência</span>
-                    <span>{{ birth_chart.intelligence|floatformat:1 }}%</span>
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-3">
-                    <div class="cosmic-gradient rounded-full h-3 transition-all duration-1000" style="width: {{ birth_chart.intelligence }}%;"></div>
-                </div>
-            </div>
+    <!-- Daily Prediction Highlight -->
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8 mb-6 md:mb-8">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <div class="text-3xl md:text-4xl">🔮</div>
+            <h2 class="text-xl md:text-2xl font-bold glow-text">Sua Previsão de Hoje</h2>
         </div>
+        <div class="glass-effect rounded-xl p-4 md:p-5">
+            <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.daily_prediction }}</p>
+        </div>
+        <a href="{% url 'predictions' %}" class="inline-block mt-4 text-purple-300 hover:text-purple-200 text-sm md:text-base transition">
+            Ver todas as previsões →
+        </a>
     </div>
 
-    <!-- Predictions -->
-    <div class="cosmic-card rounded-3xl p-8 md:p-12 mb-8">
-        <h2 class="text-3xl font-bold text-center mb-8 glow-text">
-            📅 Previsões Astrológicas
-        </h2>
+    <!-- Quick Access Grid -->
+    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center glow-text">Explore seu Mapa</h2>
 
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="glass-effect rounded-xl p-6">
-                <h3 class="text-xl font-bold mb-4">🔮 Diário</h3>
-                <p class="text-purple-200">{{ birth_chart.daily_prediction }}</p>
-            </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <!-- Natal Chart -->
+        <a href="{% url 'natal_chart' %}" class="cosmic-card rounded-xl md:rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">🌟</div>
+            <h3 class="text-base md:text-lg font-bold mb-2">Mapa Astral</h3>
+            <p class="text-xs md:text-sm text-purple-300">Seus signos e personalidade</p>
+        </a>
 
-            <div class="glass-effect rounded-xl p-6">
-                <h3 class="text-xl font-bold mb-4">🌙 Semanal</h3>
-                <p class="text-purple-200">{{ birth_chart.weekly_prediction }}</p>
-            </div>
+        <!-- Predictions -->
+        <a href="{% url 'predictions' %}" class="cosmic-card rounded-xl md:rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">🔮</div>
+            <h3 class="text-base md:text-lg font-bold mb-2">Previsões</h3>
+            <p class="text-xs md:text-sm text-purple-300">Diárias, semanais e mensais</p>
+        </a>
 
-            <div class="glass-effect rounded-xl p-6">
-                <h3 class="text-xl font-bold mb-4">☀️ Mensal</h3>
-                <p class="text-purple-200">{{ birth_chart.monthly_prediction }}</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Complete Readings -->
-    <div class="space-y-8">
         <!-- Love -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">❤️ Amor</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.love_reading }}</p>
-        </div>
+        <a href="{% url 'readings' %}" class="cosmic-card rounded-xl md:rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">❤️</div>
+            <h3 class="text-base md:text-lg font-bold mb-2">Amor</h3>
+            <p class="text-xs md:text-sm text-purple-300">Leitura amorosa completa</p>
+        </a>
 
         <!-- Career -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">💼 Carreira</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.career_reading }}</p>
-        </div>
+        <a href="{% url 'readings' %}" class="cosmic-card rounded-xl md:rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">💼</div>
+            <h3 class="text-base md:text-lg font-bold mb-2">Carreira</h3>
+            <p class="text-xs md:text-sm text-purple-300">Seu propósito profissional</p>
+        </a>
 
         <!-- Money -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">💰 Dinheiro</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.money_reading }}</p>
-        </div>
+        <a href="{% url 'readings' %}" class="cosmic-card rounded-xl md:rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">💰</div>
+            <h3 class="text-base md:text-lg font-bold mb-2">Finanças</h3>
+            <p class="text-xs md:text-sm text-purple-300">Prosperidade e abundância</p>
+        </a>
 
-        <!-- Health -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">🩺 Saúde</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.health_reading }}</p>
-        </div>
-
-        <!-- Chinese Astrology -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">🐉 Astrologia Chinesa</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.chinese_astrology }}</p>
-        </div>
-
-        <!-- Tarot -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">🔮 Tarot</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.tarot_reading }}</p>
-        </div>
-
-        <!-- Numerology -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">🔢 Numerologia</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.numerology_reading }}</p>
-        </div>
-
-        <!-- Planets -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">🪐 Planetas</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.planets_reading }}</p>
-        </div>
-
-        <!-- Compatibility -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">💞 Compatibilidade Amorosa</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.compatibility_reading }}</p>
-        </div>
-
-        <!-- Psychic Reading -->
-        <div class="cosmic-card rounded-2xl p-8">
-            <h3 class="text-2xl font-bold mb-4">🔮 Leitura Psíquica Simbólica</h3>
-            <p class="text-purple-200 leading-relaxed">{{ birth_chart.psychic_reading }}</p>
-        </div>
+        <!-- All Readings -->
+        <a href="{% url 'readings' %}" class="cosmic-card rounded-xl md:rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-4xl md:text-5xl mb-3 md:mb-4">📖</div>
+            <h3 class="text-base md:text-lg font-bold mb-2">Todas</h3>
+            <p class="text-xs md:text-sm text-purple-300">Leituras completas</p>
+        </a>
     </div>
 
     <!-- Subscription Info -->
-    <div class="cosmic-card rounded-2xl p-8 mt-8 text-center">
-        <h3 class="text-xl font-bold mb-2">Seu Plano: {{ subscription.get_plan_display }}</h3>
-        <p class="text-purple-300">
-            Status: <span class="text-green-400">{{ subscription.get_status_display }}</span>
-        </p>
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8 mt-6 md:mt-8 text-center">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left">
+                <h3 class="text-lg md:text-xl font-bold mb-1">
+                    Plano {{ subscription.get_plan_display }}
+                </h3>
+                <p class="text-sm md:text-base text-purple-300">
+                    Status: <span class="{% if subscription.status == 'active' %}text-green-400{% else %}text-yellow-400{% endif %} font-semibold">{{ subscription.get_status_display }}</span>
+                </p>
+            </div>
+            <a href="{% url 'settings' %}" class="cosmic-button px-6 py-2 rounded-full font-medium text-sm md:text-base">
+                Gerenciar Plano
+            </a>
+        </div>
     </div>
 </section>
-
-{% block extra_js %}
-<script>
-    // Animate progress bars on load
-    window.addEventListener('load', function() {
-        const bars = document.querySelectorAll('.cosmic-gradient.rounded-full');
-        bars.forEach((bar, index) => {
-            setTimeout(() => {
-                bar.style.opacity = '1';
-            }, index * 100);
-        });
-    });
-</script>
-{% endblock %}
 {% endblock %}

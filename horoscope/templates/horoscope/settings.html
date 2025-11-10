@@ -1,0 +1,231 @@
+{% extends 'horoscope/base.html' %}
+
+{% block title %}Configurações - AstroLife{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-6 md:py-8 max-w-4xl">
+    <!-- Header -->
+    <div class="text-center mb-8 md:mb-12">
+        <h1 class="text-3xl md:text-5xl font-bold mb-3 md:mb-4 glow-text">
+            Configurações ⚙️
+        </h1>
+        <p class="text-base md:text-xl text-purple-200">
+            Gerencie sua conta e assinatura
+        </p>
+    </div>
+
+    <!-- Profile Information -->
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8 mb-6 md:mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 glow-text">
+            👤 Perfil
+        </h2>
+
+        <div class="space-y-4">
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <label class="block text-xs md:text-sm text-purple-300 mb-1">Nome de Usuário</label>
+                <p class="text-base md:text-lg font-semibold">{{ user.username }}</p>
+            </div>
+
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <label class="block text-xs md:text-sm text-purple-300 mb-1">E-mail</label>
+                <p class="text-base md:text-lg font-semibold">{{ user.email }}</p>
+            </div>
+
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <label class="block text-xs md:text-sm text-purple-300 mb-1">Data de Nascimento</label>
+                <p class="text-base md:text-lg font-semibold">{{ profile.birth_date|date:"d/m/Y" }}</p>
+            </div>
+
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <label class="block text-xs md:text-sm text-purple-300 mb-1">Hora de Nascimento</label>
+                <p class="text-base md:text-lg font-semibold">{{ profile.birth_time|time:"H:i" }}</p>
+            </div>
+
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <label class="block text-xs md:text-sm text-purple-300 mb-1">Local de Nascimento</label>
+                <p class="text-base md:text-lg font-semibold">{{ profile.birth_city }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscription Information -->
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8 mb-6 md:mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 glow-text">
+            💳 Assinatura
+        </h2>
+
+        <div class="glass-effect rounded-xl p-5 md:p-6 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2">
+                        Plano: {{ subscription.get_plan_display }}
+                    </h3>
+                    <p class="text-sm md:text-base text-purple-300">
+                        Status: <span class="{% if subscription.status == 'active' %}text-green-400{% else %}text-yellow-400{% endif %} font-semibold">
+                            {{ subscription.get_status_display }}
+                        </span>
+                    </p>
+                    {% if subscription.plan != 'free' %}
+                    <p class="text-xs md:text-sm text-purple-300 mt-2">
+                        Renovação em: {{ subscription.start_date|date:"d/m/Y" }}
+                    </p>
+                    {% endif %}
+                </div>
+                {% if subscription.status == 'active' %}
+                <div class="text-4xl md:text-5xl">✅</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Plan Options -->
+        <div class="space-y-4">
+            <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">Alterar Plano</h3>
+
+            <!-- Free Plan -->
+            <div class="glass-effect rounded-xl p-4 md:p-5 {% if subscription.plan == 'free' %}border-2 border-purple-500{% endif %}">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <h4 class="text-base md:text-lg font-bold mb-1">Plano Gratuito</h4>
+                        <p class="text-xs md:text-sm text-purple-300">Acesso básico ao seu mapa astral</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <p class="text-lg md:text-xl font-bold">R$ 0,00</p>
+                        {% if subscription.plan != 'free' %}
+                        <button class="cosmic-button px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium">
+                            Selecionar
+                        </button>
+                        {% else %}
+                        <span class="text-green-400 text-sm md:text-base">Atual</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Plan -->
+            <div class="glass-effect rounded-xl p-4 md:p-5 {% if subscription.plan == 'monthly' %}border-2 border-purple-500{% endif %}">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <h4 class="text-base md:text-lg font-bold mb-1">Plano Mensal</h4>
+                        <p class="text-xs md:text-sm text-purple-300">Todas as funcionalidades + atualizações diárias</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <p class="text-lg md:text-xl font-bold">R$ 19,99<span class="text-xs md:text-sm text-purple-300">/mês</span></p>
+                        {% if subscription.plan != 'monthly' %}
+                        <button class="cosmic-button px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium">
+                            Selecionar
+                        </button>
+                        {% else %}
+                        <span class="text-green-400 text-sm md:text-base">Atual</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Semester Plan -->
+            <div class="glass-effect rounded-xl p-4 md:p-5 {% if subscription.plan == 'semester' %}border-2 border-purple-500{% endif %}">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <h4 class="text-base md:text-lg font-bold mb-1">Plano Semestral</h4>
+                        <p class="text-xs md:text-sm text-purple-300">Economize 30% com 6 meses</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <p class="text-lg md:text-xl font-bold">R$ 13,99<span class="text-xs md:text-sm text-purple-300">/mês</span></p>
+                        {% if subscription.plan != 'semester' %}
+                        <button class="cosmic-button px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium">
+                            Selecionar
+                        </button>
+                        {% else %}
+                        <span class="text-green-400 text-sm md:text-base">Atual</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Annual Plan -->
+            <div class="glass-effect rounded-xl p-4 md:p-5 border-2 border-purple-500 relative {% if subscription.plan == 'annual' %}bg-purple-500/10{% endif %}">
+                <div class="absolute -top-3 right-4 cosmic-button px-3 py-1 rounded-full text-xs font-bold">
+                    Melhor Oferta
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <h4 class="text-base md:text-lg font-bold mb-1">Plano Anual</h4>
+                        <p class="text-xs md:text-sm text-purple-300">Economize 40% com 12 meses</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <p class="text-lg md:text-xl font-bold">R$ 11,99<span class="text-xs md:text-sm text-purple-300">/mês</span></p>
+                        {% if subscription.plan != 'annual' %}
+                        <button class="cosmic-button px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium">
+                            Selecionar
+                        </button>
+                        {% else %}
+                        <span class="text-green-400 text-sm md:text-base">Atual</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Actions -->
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8 mb-6 md:mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 glow-text">
+            🔐 Segurança
+        </h2>
+
+        <div class="space-y-4">
+            <button class="glass-effect w-full rounded-xl p-4 md:p-5 text-left hover:bg-purple-500/20 transition flex items-center justify-between">
+                <div>
+                    <h4 class="text-base md:text-lg font-semibold mb-1">Alterar Senha</h4>
+                    <p class="text-xs md:text-sm text-purple-300">Atualize sua senha de acesso</p>
+                </div>
+                <span class="text-xl md:text-2xl">→</span>
+            </button>
+
+            <button class="glass-effect w-full rounded-xl p-4 md:p-5 text-left hover:bg-purple-500/20 transition flex items-center justify-between">
+                <div>
+                    <h4 class="text-base md:text-lg font-semibold mb-1">Alterar E-mail</h4>
+                    <p class="text-xs md:text-sm text-purple-300">Atualize seu endereço de e-mail</p>
+                </div>
+                <span class="text-xl md:text-2xl">→</span>
+            </button>
+
+            <button class="glass-effect w-full rounded-xl p-4 md:p-5 text-left hover:bg-red-500/20 transition flex items-center justify-between text-red-300">
+                <div>
+                    <h4 class="text-base md:text-lg font-semibold mb-1">Excluir Conta</h4>
+                    <p class="text-xs md:text-sm text-purple-300">Remover permanentemente sua conta</p>
+                </div>
+                <span class="text-xl md:text-2xl">→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Help Section -->
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 glow-text">
+            💬 Suporte
+        </h2>
+
+        <div class="space-y-4">
+            <a href="#" class="glass-effect block rounded-xl p-4 md:p-5 hover:bg-purple-500/20 transition">
+                <div class="flex items-center gap-3 md:gap-4">
+                    <span class="text-2xl md:text-3xl">📧</span>
+                    <div>
+                        <h4 class="text-base md:text-lg font-semibold">Entre em Contato</h4>
+                        <p class="text-xs md:text-sm text-purple-300">suporte@astrolife.com</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="glass-effect block rounded-xl p-4 md:p-5 hover:bg-purple-500/20 transition">
+                <div class="flex items-center gap-3 md:gap-4">
+                    <span class="text-2xl md:text-3xl">❓</span>
+                    <div>
+                        <h4 class="text-base md:text-lg font-semibold">Central de Ajuda</h4>
+                        <p class="text-xs md:text-sm text-purple-300">Perguntas frequentes e tutoriais</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

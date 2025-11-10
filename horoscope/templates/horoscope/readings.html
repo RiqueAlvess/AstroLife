@@ -1,0 +1,170 @@
+{% extends 'horoscope/base.html' %}
+
+{% block title %}Leituras Completas - AstroLife{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-6 md:py-8">
+    <!-- Header -->
+    <div class="text-center mb-8 md:mb-12">
+        <h1 class="text-3xl md:text-5xl font-bold mb-3 md:mb-4 glow-text">
+            Leituras Completas 📖
+        </h1>
+        <p class="text-base md:text-xl text-purple-200">
+            Orientações detalhadas para todas as áreas da sua vida
+        </p>
+    </div>
+
+    <!-- Readings -->
+    <div class="space-y-6 md:space-y-8">
+        <!-- Love -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">❤️</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Amor & Relacionamentos</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Sua vida amorosa segundo os astros</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.love_reading }}</p>
+            </div>
+        </div>
+
+        <!-- Career -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">💼</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Carreira & Propósito</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Seu caminho profissional</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.career_reading }}</p>
+            </div>
+        </div>
+
+        <!-- Money -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">💰</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Finanças & Abundância</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Sua relação com o dinheiro</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.money_reading }}</p>
+            </div>
+        </div>
+
+        <!-- Health -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">🩺</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Saúde & Bem-Estar</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Cuidando do seu corpo e mente</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.health_reading }}</p>
+            </div>
+        </div>
+
+        <!-- Chinese Astrology -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">🐉</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Astrologia Chinesa</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Seu signo no horóscopo chinês</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.chinese_astrology }}</p>
+            </div>
+        </div>
+
+        <!-- Tarot -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">🔮</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Leitura de Tarot</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Mensagens das cartas para você</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.tarot_reading }}</p>
+            </div>
+        </div>
+
+        <!-- Numerology -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">🔢</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Numerologia</h2>
+                    <p class="text-xs md:text-sm text-purple-300">O significado dos seus números</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.numerology_reading }}</p>
+            </div>
+        </div>
+
+        <!-- Planets -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">🪐</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Planetas</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Influências planetárias no seu mapa</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.planets_reading }}</p>
+            </div>
+        </div>
+
+        <!-- Compatibility -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">💞</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Compatibilidade Amorosa</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Com quem você combina</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.compatibility_reading }}</p>
+            </div>
+        </div>
+
+        <!-- Psychic Reading -->
+        <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div class="text-4xl md:text-5xl">✨</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold glow-text">Leitura Psíquica</h2>
+                    <p class="text-xs md:text-sm text-purple-300">Mensagem intuitiva personalizada</p>
+                </div>
+            </div>
+            <div class="glass-effect rounded-xl p-5 md:p-6">
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.psychic_reading }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Access Buttons -->
+    <div class="grid grid-cols-2 gap-4 mt-6 md:mt-8">
+        <a href="{% url 'natal_chart' %}" class="cosmic-button text-center py-4 rounded-xl font-semibold text-sm md:text-base">
+            🌟 Meu Mapa Astral
+        </a>
+        <a href="{% url 'predictions' %}" class="cosmic-button text-center py-4 rounded-xl font-semibold text-sm md:text-base">
+            🔮 Ver Previsões
+        </a>
+    </div>
+</section>
+{% endblock %}

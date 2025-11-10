@@ -1,0 +1,165 @@
+{% extends 'horoscope/base.html' %}
+
+{% block title %}Meu Mapa Astral - AstroLife{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-6 md:py-8">
+    <!-- Header -->
+    <div class="text-center mb-8 md:mb-12">
+        <h1 class="text-3xl md:text-5xl font-bold mb-3 md:mb-4 glow-text">
+            Seu Mapa Astral 🌟
+        </h1>
+        <p class="text-base md:text-xl text-purple-200">
+            Descubra quem você realmente é através dos astros
+        </p>
+    </div>
+
+    <!-- Main Signs Card -->
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-12 mb-6 md:mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 glow-text">
+            Seus Signos Principais
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
+            <!-- Sun Sign -->
+            <div class="text-center cosmic-card rounded-xl p-6">
+                <div class="text-5xl md:text-6xl mb-4">☀️</div>
+                <h3 class="text-xl md:text-2xl font-bold mb-2">Sol</h3>
+                <p class="text-2xl md:text-3xl font-bold cosmic-gradient bg-clip-text text-transparent mb-2">
+                    {{ birth_chart.sun_sign }}
+                </p>
+                <p class="text-xs md:text-sm text-purple-300">{{ birth_chart.sun_position|floatformat:2 }}°</p>
+                <p class="text-xs md:text-sm text-purple-400 mt-2">Sua essência</p>
+            </div>
+
+            <!-- Moon Sign -->
+            <div class="text-center cosmic-card rounded-xl p-6">
+                <div class="text-5xl md:text-6xl mb-4">🌙</div>
+                <h3 class="text-xl md:text-2xl font-bold mb-2">Lua</h3>
+                <p class="text-2xl md:text-3xl font-bold cosmic-gradient bg-clip-text text-transparent mb-2">
+                    {{ birth_chart.moon_sign }}
+                </p>
+                <p class="text-xs md:text-sm text-purple-300">{{ birth_chart.moon_position|floatformat:2 }}°</p>
+                <p class="text-xs md:text-sm text-purple-400 mt-2">Suas emoções</p>
+            </div>
+
+            <!-- Ascendant -->
+            <div class="text-center cosmic-card rounded-xl p-6">
+                <div class="text-5xl md:text-6xl mb-4">🌅</div>
+                <h3 class="text-xl md:text-2xl font-bold mb-2">Ascendente</h3>
+                <p class="text-2xl md:text-3xl font-bold cosmic-gradient bg-clip-text text-transparent mb-2">
+                    {{ birth_chart.ascendant_sign }}
+                </p>
+                <p class="text-xs md:text-sm text-purple-300">{{ birth_chart.ascendant_position|floatformat:2 }}°</p>
+                <p class="text-xs md:text-sm text-purple-400 mt-2">Sua aparência</p>
+            </div>
+        </div>
+
+        <!-- Descriptions -->
+        <div class="space-y-4 md:space-y-6">
+            <div class="glass-effect rounded-xl p-4 md:p-6">
+                <h4 class="font-bold text-base md:text-lg mb-2">☀️ Sol em {{ birth_chart.sun_sign }}</h4>
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.sun_description }}</p>
+            </div>
+
+            <div class="glass-effect rounded-xl p-4 md:p-6">
+                <h4 class="font-bold text-base md:text-lg mb-2">🌙 Lua em {{ birth_chart.moon_sign }}</h4>
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.moon_description }}</p>
+            </div>
+
+            <div class="glass-effect rounded-xl p-4 md:p-6">
+                <h4 class="font-bold text-base md:text-lg mb-2">🌅 Ascendente em {{ birth_chart.ascendant_sign }}</h4>
+                <p class="text-sm md:text-base text-purple-200 leading-relaxed">{{ birth_chart.ascendant_description }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personality Traits -->
+    <div class="cosmic-card rounded-2xl md:rounded-3xl p-6 md:p-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 glow-text">
+            🧠 Perfil de Personalidade
+        </h2>
+
+        <div class="space-y-4 md:space-y-6 max-w-3xl mx-auto">
+            <!-- Leadership -->
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <div class="flex justify-between mb-2">
+                    <span class="font-semibold text-sm md:text-base">💪 Liderança</span>
+                    <span class="text-sm md:text-base">{{ birth_chart.leadership|floatformat:1 }}%</span>
+                </div>
+                <div class="w-full bg-gray-700/50 rounded-full h-2 md:h-3">
+                    <div class="cosmic-gradient rounded-full h-2 md:h-3 transition-all duration-1000" style="width: {{ birth_chart.leadership }}%;"></div>
+                </div>
+            </div>
+
+            <!-- Courage -->
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <div class="flex justify-between mb-2">
+                    <span class="font-semibold text-sm md:text-base">🦁 Coragem</span>
+                    <span class="text-sm md:text-base">{{ birth_chart.courage|floatformat:1 }}%</span>
+                </div>
+                <div class="w-full bg-gray-700/50 rounded-full h-2 md:h-3">
+                    <div class="cosmic-gradient rounded-full h-2 md:h-3 transition-all duration-1000" style="width: {{ birth_chart.courage }}%;"></div>
+                </div>
+            </div>
+
+            <!-- Charisma -->
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <div class="flex justify-between mb-2">
+                    <span class="font-semibold text-sm md:text-base">✨ Carisma</span>
+                    <span class="text-sm md:text-base">{{ birth_chart.charisma|floatformat:1 }}%</span>
+                </div>
+                <div class="w-full bg-gray-700/50 rounded-full h-2 md:h-3">
+                    <div class="cosmic-gradient rounded-full h-2 md:h-3 transition-all duration-1000" style="width: {{ birth_chart.charisma }}%;"></div>
+                </div>
+            </div>
+
+            <!-- Sensitivity -->
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <div class="flex justify-between mb-2">
+                    <span class="font-semibold text-sm md:text-base">💝 Sensibilidade</span>
+                    <span class="text-sm md:text-base">{{ birth_chart.sensitivity|floatformat:1 }}%</span>
+                </div>
+                <div class="w-full bg-gray-700/50 rounded-full h-2 md:h-3">
+                    <div class="cosmic-gradient rounded-full h-2 md:h-3 transition-all duration-1000" style="width: {{ birth_chart.sensitivity }}%;"></div>
+                </div>
+            </div>
+
+            <!-- Intelligence -->
+            <div class="glass-effect rounded-xl p-4 md:p-5">
+                <div class="flex justify-between mb-2">
+                    <span class="font-semibold text-sm md:text-base">🧠 Inteligência</span>
+                    <span class="text-sm md:text-base">{{ birth_chart.intelligence|floatformat:1 }}%</span>
+                </div>
+                <div class="w-full bg-gray-700/50 rounded-full h-2 md:h-3">
+                    <div class="cosmic-gradient rounded-full h-2 md:h-3 transition-all duration-1000" style="width: {{ birth_chart.intelligence }}%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Access Buttons -->
+    <div class="grid grid-cols-2 gap-4 mt-6 md:mt-8">
+        <a href="{% url 'predictions' %}" class="cosmic-button text-center py-4 rounded-xl font-semibold text-sm md:text-base">
+            🔮 Ver Previsões
+        </a>
+        <a href="{% url 'readings' %}" class="cosmic-button text-center py-4 rounded-xl font-semibold text-sm md:text-base">
+            📖 Leituras Completas
+        </a>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    // Animate progress bars on load
+    window.addEventListener('load', function() {
+        const bars = document.querySelectorAll('.cosmic-gradient.rounded-full');
+        bars.forEach((bar, index) => {
+            setTimeout(() => {
+                bar.style.opacity = '1';
+            }, index * 100);
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}
