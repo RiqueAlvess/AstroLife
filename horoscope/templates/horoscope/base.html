@@ -57,17 +57,118 @@
         .glass-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Cosmic Gradient Button */
+        /* Glass Effect - Alternative styling for options/labels */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        /* Cosmic Card - Enhanced card with stronger presence */
+        .cosmic-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Cosmic Gradient - For text and progress bars */
+        .cosmic-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        /* Progress Bar Styling */
+        .progress-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Cosmic Button - Primary action button */
         .cosmic-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s ease;
+            color: #ffffff;
+            font-weight: 600;
         }
         .cosmic-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Cosmic Button - Alternative class name */
+        .cosmic-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            color: #ffffff;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        .cosmic-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .cosmic-button:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Form Elements - Ensure proper visibility */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        /* Select dropdown - Ensure visibility */
+        select option {
+            background: #1a1042;
+            color: #ffffff;
+            padding: 8px;
+        }
+
+        select:focus option:checked,
+        select option:hover {
+            background: #764ba2;
+            color: #ffffff;
+        }
+
+        /* Radio and Checkbox inputs */
+        input[type="radio"],
+        input[type="checkbox"] {
+            accent-color: #667eea;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* Disabled button styling */
+        button:disabled {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: rgba(255, 255, 255, 0.4) !important;
+            cursor: not-allowed !important;
+            transform: none !important;
         }
 
         /* Glow Text Effect */
@@ -94,6 +195,66 @@
             transform: translateY(0);
             opacity: 1;
             pointer-events: all;
+        }
+
+        /* Ensure text contrast in all cards */
+        .glass-card *,
+        .glass-effect *,
+        .cosmic-card * {
+            color: inherit;
+        }
+
+        /* Specific text color overrides for better visibility */
+        .text-purple-200 {
+            color: #ddd6fe !important;
+        }
+
+        .text-purple-300 {
+            color: #c4b5fd !important;
+        }
+
+        .text-purple-400 {
+            color: #a78bfa !important;
+        }
+
+        /* Border color utilities */
+        .border-purple-400 {
+            border-color: #a78bfa !important;
+        }
+
+        .border-purple-500 {
+            border-color: #8b5cf6 !important;
+        }
+
+        /* Hover effects for interactive elements */
+        .glass-card:hover,
+        .glass-effect:hover,
+        .cosmic-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+        }
+
+        /* Ensure proper contrast for disabled elements */
+        .opacity-50 {
+            opacity: 0.5;
+        }
+
+        /* Label cursor for radio/checkbox containers */
+        label {
+            cursor: pointer;
+        }
+
+        /* Details/Summary styling for FAQ */
+        details {
+            cursor: pointer;
+        }
+
+        details summary {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        details[open] {
+            background: rgba(255, 255, 255, 0.12);
         }
     </style>
 
