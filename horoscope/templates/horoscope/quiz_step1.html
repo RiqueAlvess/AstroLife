@@ -3,46 +3,46 @@
 {% block title %}Passo 1: Seus Dados Astrológicos - AstroLife{% endblock %}
 
 {% block content %}
-<section class="container mx-auto px-4 py-12 max-w-2xl">
+<section class="container mx-auto px-4 py-6 sm:py-8 md:py-12 max-w-2xl">
     <!-- Progress Bar -->
-    <div class="mb-8">
-        <div class="flex justify-between text-sm mb-2">
+    <div class="mb-6 sm:mb-8">
+        <div class="flex justify-between text-xs sm:text-sm mb-2">
             <span>Passo 1 de 4</span>
             <span>25%</span>
         </div>
-        <div class="w-full bg-gray-700 rounded-full h-2">
-            <div class="progress-bar rounded-full" style="width: 25%;"></div>
+        <div class="w-full bg-gray-700/50 rounded-full h-2">
+            <div class="cosmic-btn rounded-full h-2" style="width: 25%;"></div>
         </div>
     </div>
 
     <!-- Form -->
-    <div class="cosmic-card rounded-3xl p-8 md:p-12">
-        <div class="text-center mb-8">
-            <div class="text-6xl mb-4">🌟</div>
-            <h1 class="text-3xl md:text-4xl font-bold mb-4 glow-text">
+    <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
+        <div class="text-center mb-6 sm:mb-8">
+            <div class="text-5xl sm:text-6xl mb-3 sm:mb-4">🌟</div>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 glow-text">
                 Vamos começar sua jornada cósmica
             </h1>
-            <p class="text-purple-200">
+            <p class="text-sm sm:text-base text-purple-200">
                 Precisamos de alguns dados básicos para calcular seu mapa astral personalizado
             </p>
         </div>
 
-        <form method="post" class="space-y-6">
+        <form method="post" class="space-y-4 sm:space-y-6">
             {% csrf_token %}
 
             <!-- Gender -->
             <div>
                 <label class="block text-sm font-medium mb-3">Sexo</label>
-                <div class="grid grid-cols-3 gap-4">
-                    <label class="glass-effect rounded-xl p-4 cursor-pointer hover:border-purple-400 transition flex flex-col items-center">
+                <div class="grid grid-cols-3 gap-2 sm:gap-4">
+                    <label class="glass-card rounded-lg sm:rounded-xl p-3 sm:p-4 cursor-pointer hover:border-purple-400 transition flex flex-col items-center text-sm sm:text-base">
                         <input type="radio" name="gender" value="M" required class="mb-2">
                         <span>Masculino</span>
                     </label>
-                    <label class="glass-effect rounded-xl p-4 cursor-pointer hover:border-purple-400 transition flex flex-col items-center">
+                    <label class="glass-card rounded-lg sm:rounded-xl p-3 sm:p-4 cursor-pointer hover:border-purple-400 transition flex flex-col items-center text-sm sm:text-base">
                         <input type="radio" name="gender" value="F" required class="mb-2">
                         <span>Feminino</span>
                     </label>
-                    <label class="glass-effect rounded-xl p-4 cursor-pointer hover:border-purple-400 transition flex flex-col items-center">
+                    <label class="glass-card rounded-lg sm:rounded-xl p-3 sm:p-4 cursor-pointer hover:border-purple-400 transition flex flex-col items-center text-sm sm:text-base">
                         <input type="radio" name="gender" value="O" required class="mb-2">
                         <span>Outro</span>
                     </label>
@@ -60,7 +60,7 @@
                     id="birth_date"
                     required
                     max="{{ today|date:'Y-m-d' }}"
-                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none transition"
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/50 transition text-sm sm:text-base"
                 >
             </div>
 
@@ -73,7 +73,7 @@
                     type="time"
                     name="birth_time"
                     id="birth_time"
-                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none transition"
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/50 transition text-sm sm:text-base"
                 >
                 <p class="text-xs text-purple-300 mt-1">
                     Se não souber, deixe em branco e usaremos meio-dia como referência
@@ -89,7 +89,7 @@
                     name="birth_city"
                     id="birth_city"
                     required
-                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none transition"
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/50 transition text-sm sm:text-base"
                 >
                     <option value="">Selecione sua cidade</option>
                     {% for cidade in cidades %}
@@ -99,8 +99,8 @@
             </div>
 
             <!-- Info Box -->
-            <div class="glass-effect rounded-xl p-4 border-purple-400">
-                <p class="text-sm text-purple-200">
+            <div class="glass-card rounded-xl p-3 sm:p-4 border-purple-400/50">
+                <p class="text-xs sm:text-sm text-purple-200">
                     🔒 Seus dados estão seguros e serão usados apenas para calcular seu mapa astral personalizado
                 </p>
             </div>
@@ -108,7 +108,7 @@
             <!-- Submit Button -->
             <button
                 type="submit"
-                class="w-full cosmic-button py-4 rounded-xl font-semibold text-lg"
+                class="w-full cosmic-btn py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg"
             >
                 Continuar para o próximo passo →
             </button>
@@ -116,8 +116,8 @@
     </div>
 
     <!-- Help Text -->
-    <div class="text-center mt-8 text-purple-300">
-        <p class="text-sm">
+    <div class="text-center mt-6 sm:mt-8 text-purple-300">
+        <p class="text-xs sm:text-sm">
             Não sabe sua hora de nascimento? Sem problemas! Podemos calcular mesmo assim.
         </p>
     </div>

@@ -191,7 +191,13 @@ def quiz_step4(request):
 
 @login_required
 def dashboard(request):
-    """Dashboard principal com mapa natal completo"""
+    """Dashboard principal - redireciona para perfil"""
+    return redirect('dashboard_profile')
+
+
+@login_required
+def dashboard_profile(request):
+    """Dashboard - Perfil e Personalidade (Mapa Astral)"""
     try:
         birth_chart = request.user.birth_chart
     except BirthChart.DoesNotExist:
@@ -206,9 +212,113 @@ def dashboard(request):
         'profile': profile,
         'birth_chart': birth_chart,
         'subscription': subscription,
+        'active_tab': 'profile',
     }
 
-    return render(request, 'horoscope/dashboard.html', context)
+    return render(request, 'horoscope/dashboard_profile.html', context)
+
+
+@login_required
+def dashboard_predictions(request):
+    """Dashboard - Previsões e Leituras"""
+    try:
+        birth_chart = request.user.birth_chart
+    except BirthChart.DoesNotExist:
+        calculate_user_birth_chart(request.user)
+        birth_chart = request.user.birth_chart
+
+    profile = request.user.profile
+    subscription = request.user.subscription
+
+    context = {
+        'profile': profile,
+        'birth_chart': birth_chart,
+        'subscription': subscription,
+        'active_tab': 'predictions',
+    }
+
+    return render(request, 'horoscope/dashboard_predictions.html', context)
+
+
+@login_required
+def billing(request):
+    """Página de gerenciamento de plano e billing"""
+    subscription = request.user.subscription
+    profile = request.user.profile
+
+    if request.method == 'POST':
+        new_plan = request.POST.get('plan')
+        if new_plan in ['free', 'monthly', 'semester', 'annual']:
+            subscription.plan = new_plan
+            subscription.status = 'active'
+            subscription.save()
+            messages.success(request, f'Plano alterado para {subscription.get_plan_display()} com sucesso!')
+            return redirect('billing')
+
+    plans = [
+        {
+            'value': 'free',
+            'name': 'Gratuito',
+            'price': 'R$ 0,00',
+            'description': 'Acesso básico ao mapa astral',
+            'features': [
+                'Mapa astral básico',
+                'Signos principais (Sol, Lua, Ascendente)',
+                'Previsão diária',
+            ]
+        },
+        {
+            'value': 'monthly',
+            'name': 'Mensal',
+            'price': 'R$ 19,99/mês',
+            'description': 'Acesso completo mensal',
+            'features': [
+                'Tudo do plano gratuito',
+                'Previsões semanais e mensais',
+                'Leituras completas (amor, carreira, etc)',
+                'Atualizações diárias personalizadas',
+                'Suporte prioritário',
+            ]
+        },
+        {
+            'value': 'semester',
+            'name': 'Semestral',
+            'price': 'R$ 13,99/mês',
+            'total': 'R$ 83,94 cobrados semestralmente',
+            'description': 'Economize 30% no plano semestral',
+            'badge': 'Economia',
+            'features': [
+                'Tudo do plano mensal',
+                '30% de desconto',
+                'Relatórios mensais detalhados',
+                'Acesso antecipado a novos recursos',
+            ]
+        },
+        {
+            'value': 'annual',
+            'name': 'Anual',
+            'price': 'R$ 11,99/mês',
+            'total': 'R$ 143,88 cobrados anualmente',
+            'description': 'Melhor custo-benefício',
+            'badge': 'Melhor Oferta',
+            'features': [
+                'Tudo do plano semestral',
+                '40% de desconto',
+                'Consultoria astrológica mensal',
+                'Relatórios anuais completos',
+                'Acesso VIP a eventos exclusivos',
+            ]
+        },
+    ]
+
+    context = {
+        'subscription': subscription,
+        'profile': profile,
+        'plans': plans,
+        'current_plan': subscription.plan,
+    }
+
+    return render(request, 'horoscope/billing.html', context)
 
 
 def calculate_user_birth_chart(user):

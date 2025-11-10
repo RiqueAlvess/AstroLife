@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold",  # django-unfold - Admin moderno com Tailwind
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -121,6 +122,44 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Django Unfold Admin Configuration
+UNFOLD = {
+    "SITE_TITLE": "AstroLife Admin",
+    "SITE_HEADER": "AstroLife",
+    "SITE_URL": "/",
+    "SITE_ICON": {
+        "light": lambda request: "✨",
+        "dark": lambda request: "✨",
+    },
+    "SITE_SYMBOL": "stars",
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": False,
+    "THEME": "dark",
+    "COLORS": {
+        "font": {
+            "subtle-light": "107 114 128",
+            "subtle-dark": "156 163 175",
+            "default-light": "31 41 55",
+            "default-dark": "243 244 246",
+            "important-light": "17 24 39",
+            "important-dark": "249 250 251",
+        },
+        "primary": {
+            "50": "250 245 255",
+            "100": "243 232 255",
+            "200": "233 213 255",
+            "300": "216 180 254",
+            "400": "192 132 252",
+            "500": "168 85 247",
+            "600": "147 51 234",
+            "700": "126 34 206",
+            "800": "107 33 168",
+            "900": "88 28 135",
+            "950": "59 7 100",
+        },
+    },
+}
 
 # Login settings
 LOGIN_URL = 'login'
