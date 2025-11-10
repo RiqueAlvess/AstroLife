@@ -1,0 +1,159 @@
+{% extends 'horoscope/base.html' %}
+
+{% block title %}Previsões - AstroLife{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-6 sm:py-8 lg:py-12">
+    <!-- Header -->
+    <div class="text-center mb-8 sm:mb-12">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 glow-text">
+            Suas Previsões 🔮
+        </h1>
+        <p class="text-lg sm:text-xl text-purple-200">
+            Descubra o que os astros revelam para você
+        </p>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="glass-card rounded-2xl p-2 mb-6 sm:mb-8 max-w-2xl mx-auto">
+        <div class="grid grid-cols-2 gap-2">
+            <a href="{% url 'dashboard_profile' %}" class="px-4 py-3 rounded-xl text-center font-medium hover:bg-white/10 transition-colors text-sm sm:text-base">
+                🌟 Perfil
+            </a>
+            <a href="{% url 'dashboard_predictions' %}" class="cosmic-btn px-4 py-3 rounded-xl text-center font-medium text-sm sm:text-base">
+                🔮 Previsões
+            </a>
+        </div>
+    </div>
+
+    <!-- Daily Predictions -->
+    <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 mb-6 sm:mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 glow-text">
+            📅 Previsões Astrológicas
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            <div class="glass-card rounded-xl p-4 sm:p-6">
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">🔮 Diário</h3>
+                <p class="text-sm sm:text-base text-purple-200">{{ birth_chart.daily_prediction }}</p>
+            </div>
+
+            {% if subscription.is_premium %}
+            <div class="glass-card rounded-xl p-4 sm:p-6">
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">🌙 Semanal</h3>
+                <p class="text-sm sm:text-base text-purple-200">{{ birth_chart.weekly_prediction }}</p>
+            </div>
+
+            <div class="glass-card rounded-xl p-4 sm:p-6">
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">☀️ Mensal</h3>
+                <p class="text-sm sm:text-base text-purple-200">{{ birth_chart.monthly_prediction }}</p>
+            </div>
+            {% else %}
+            <div class="glass-card rounded-xl p-4 sm:p-6 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl mb-2">🔒</div>
+                        <p class="text-xs sm:text-sm font-semibold">Premium</p>
+                    </div>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">🌙 Semanal</h3>
+                <p class="text-sm sm:text-base text-purple-200 blur-sm">Esta é uma prévia das previsões semanais disponíveis apenas para assinantes premium.</p>
+            </div>
+
+            <div class="glass-card rounded-xl p-4 sm:p-6 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl mb-2">🔒</div>
+                        <p class="text-xs sm:text-sm font-semibold">Premium</p>
+                    </div>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">☀️ Mensal</h3>
+                <p class="text-sm sm:text-base text-purple-200 blur-sm">Esta é uma prévia das previsões mensais disponíveis apenas para assinantes premium.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Complete Readings -->
+    <div class="space-y-4 sm:space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6 glow-text">
+            ✨ Leituras Completas
+        </h2>
+
+        {% if subscription.is_premium %}
+        <!-- Love -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">❤️ Amor</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.love_reading }}</p>
+        </div>
+
+        <!-- Career -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">💼 Carreira</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.career_reading }}</p>
+        </div>
+
+        <!-- Money -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">💰 Dinheiro</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.money_reading }}</p>
+        </div>
+
+        <!-- Health -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">🩺 Saúde</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.health_reading }}</p>
+        </div>
+
+        <!-- Chinese Astrology -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">🐉 Astrologia Chinesa</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.chinese_astrology }}</p>
+        </div>
+
+        <!-- Tarot -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">🔮 Tarot</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.tarot_reading }}</p>
+        </div>
+
+        <!-- Numerology -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">🔢 Numerologia</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.numerology_reading }}</p>
+        </div>
+
+        <!-- Planets -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">🪐 Planetas</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.planets_reading }}</p>
+        </div>
+
+        <!-- Compatibility -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">💞 Compatibilidade Amorosa</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.compatibility_reading }}</p>
+        </div>
+
+        <!-- Psychic Reading -->
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">🔮 Leitura Psíquica Simbólica</h3>
+            <p class="text-sm sm:text-base text-purple-200 leading-relaxed">{{ birth_chart.psychic_reading }}</p>
+        </div>
+        {% else %}
+        <!-- Free Plan - Locked Content -->
+        <div class="glass-card rounded-xl p-6 sm:p-8 text-center border-2 border-purple-500/50">
+            <div class="text-5xl sm:text-6xl mb-4">🔒</div>
+            <h3 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Conteúdo Premium</h3>
+            <p class="text-purple-200 mb-6 text-sm sm:text-base max-w-2xl mx-auto">
+                As leituras completas de Amor, Carreira, Dinheiro, Saúde, Astrologia Chinesa, Tarot, Numerologia,
+                Planetas, Compatibilidade e Leitura Psíquica estão disponíveis apenas para assinantes premium.
+            </p>
+            <a href="{% url 'billing' %}" class="cosmic-btn px-6 sm:px-8 py-3 rounded-full font-medium inline-block text-sm sm:text-base">
+                Desbloquear Leituras Completas
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

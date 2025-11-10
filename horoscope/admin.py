@@ -1,9 +1,10 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 from .models import UserProfile, BirthChart, Subscription
 
 
 @admin.register(UserProfile)
-class UserProfileAdmin(admin.ModelAdmin):
+class UserProfileAdmin(ModelAdmin):
     list_display = ('user', 'birth_date', 'birth_city', 'quiz_completed', 'created_at')
     list_filter = ('gender', 'quiz_completed', 'current_objective', 'current_feeling')
     search_fields = ('user__username', 'user__email', 'birth_city')
@@ -27,7 +28,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 
 @admin.register(BirthChart)
-class BirthChartAdmin(admin.ModelAdmin):
+class BirthChartAdmin(ModelAdmin):
     list_display = ('user', 'sun_sign', 'moon_sign', 'ascendant_sign', 'calculated_at')
     list_filter = ('sun_sign', 'moon_sign', 'ascendant_sign')
     search_fields = ('user__username',)
@@ -61,7 +62,7 @@ class BirthChartAdmin(admin.ModelAdmin):
 
 
 @admin.register(Subscription)
-class SubscriptionAdmin(admin.ModelAdmin):
+class SubscriptionAdmin(ModelAdmin):
     list_display = ('user', 'plan', 'status', 'start_date', 'end_date')
     list_filter = ('plan', 'status')
     search_fields = ('user__username', 'user__email')
