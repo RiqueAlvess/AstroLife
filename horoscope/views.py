@@ -37,11 +37,18 @@ CIDADES_BRASIL = {
 
 def index(request):
     """Página inicial - landing page"""
+    # Redirecionar usuários logados para o dashboard
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     return render(request, 'horoscope/index.html')
 
 
 def quiz_step1(request):
     """Etapa 1: Coleta de dados astrológicos"""
+    # Redirecionar usuários logados para o dashboard
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
     if request.method == 'POST':
         # Armazenar dados na sessão
         request.session['gender'] = request.POST.get('gender')
@@ -64,6 +71,15 @@ def quiz_step1(request):
 
 def quiz_step2(request):
     """Etapa 2: Perfil emocional e objetivos"""
+    # Redirecionar usuários logados para o dashboard
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    # Validar que o passo 1 foi completado
+    if 'birth_date' not in request.session:
+        messages.error(request, 'Por favor, complete o passo 1 primeiro.')
+        return redirect('quiz_step1')
+
     if request.method == 'POST':
         request.session['feeling'] = request.POST.get('feeling')
         request.session['objective'] = request.POST.get('objective')
@@ -95,6 +111,15 @@ def quiz_step2(request):
 
 def quiz_step3(request):
     """Etapa 3: Registro de usuário"""
+    # Redirecionar usuários logados para o dashboard
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    # Validar que os passos anteriores foram completados
+    if 'birth_date' not in request.session or 'feeling' not in request.session:
+        messages.error(request, 'Por favor, complete os passos anteriores primeiro.')
+        return redirect('quiz_step1')
+
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -154,6 +179,16 @@ def quiz_step3(request):
 @login_required
 def quiz_step4(request):
     """Etapa 4: Escolha de plano de assinatura"""
+    # Verificar se o usuário já completou o quiz
+    if hasattr(request.user, 'profile') and request.user.profile.quiz_completed:
+        messages.info(request, 'Você já completou o quiz.')
+        return redirect('dashboard')
+
+    # Validar que os passos anteriores foram completados
+    if 'birth_date' not in request.session or 'feeling' not in request.session:
+        messages.error(request, 'Por favor, complete o quiz desde o início.')
+        return redirect('quiz_step1')
+
     if request.method == 'POST':
         plan = request.POST.get('plan')
         subscription = request.user.subscription
